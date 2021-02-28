@@ -1,33 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-function TodoForm (props) {
-    const [input, setInput] = useState('');
-   /*  console.log('input', input);
-    console.log('setinput', setInput); */
+const TodoForm = ({ input, setInput, todos, setTodos }) => {
+  
+    const onInputChange = event => {
+        setInput(event.target.value);
+        };
 
-    const handleChange = e => {
-        setInput(e.target.value); 
-        /* console.log('e', e); */
+    const handleSubmit = event => {
+        event.preventDefault();
+        setTodos([...todos, {id: uuidv4(), title: input, completed: false}]);
+        setInput("");
     }
-    /* console.log('handleChange', handleChange); */
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        /* console.log('e2', e); */
-
-        props.onSubmit({
-            id: Math.floor(Math.random() * 10000),
-            text: input
-        });
-
-        setInput('');
-    };
-
+  
     return (
-        <form className="todo-form" onSubmit={handleSubmit}>
-            <input className="todo-input" name="name" type="text" placeholder="What do You want to do?" value={input} onChange={handleChange} />
-            <button className="todo-button" name="button"><i class="fas fa-plus"></i></button>
-        </form>
+        <form className ="todo-form" onSubmit={handleSubmit}>
+            <input className="todo-input" type="text" placeholder="What do You want to do?" value={input} required onChange={onInputChange}/>
+            <button className="todo-button" name="button" type="submit">Add</button>
+        </form> 
     )
 }
 

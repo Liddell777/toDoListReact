@@ -1,24 +1,17 @@
-import React, { useState } from 'react'
-import TodoForm from './TodoForm'
+import React from 'react';
 
-function TodoList() {
-    const [tasks, setTasks] = useState([]);
-
-    const addTodo = todo => {
-
-        const newTasks = [todo, ...tasks]
-        console.log('newTasks', newTasks)
-
-        setTasks(newTasks)
-
-        console.log('todo',...tasks)
-    }
-
+const TodoList = ({todos, setTodos}) =>  {
     return (
         <div>
-            <TodoForm onSubmit={addTodo} />
+            {todos.map((todo) => (
+                <li className="maine__item" key={todo.id}>
+                    <input type="text" value={todo.title} className="maine__input" onChange={(event) => event.preventDefault()} />
+                    <button class='main__btn'>Delete</button>     
+                </li> 
+                )
+            )}
         </div>
-    );
+    )
 }
 
 export default TodoList;

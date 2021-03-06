@@ -10,7 +10,7 @@ const App = () => {
 
 
   return (
-    <div className="todo-list">
+    <div className="todo">
       <div>
         <h1>ToDoList</h1>
           <TodoForm
@@ -20,7 +20,7 @@ const App = () => {
             setTodos = {setTodos}
           />
       </div>
-      <div>
+      <div >
         <TodoList 
           todos = {todos}
           setTodos ={setTodos}
